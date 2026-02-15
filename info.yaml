@@ -1,56 +1,56 @@
 # Tiny Tapeout project information
 project:
-  title:        "the"      # Project title
-  author:       "your"      # Your name
-  discord:      "we"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "are"      # One line description of what your project does
+  title:        "VGA Mouse Controller with PS/2"      # Project title
+  author:       "Your Name"      # Your name
+  discord:      "your_discord"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "VGA display with mouse cursor controlled by PS/2 input"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+  clock_hz:     25175000       # 25.175 MHz for VGA 640x480 @ 60Hz
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
-  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+  tiles: "1x2"          # Using 1x2 tiles for VGA + PS/2 design (more I/O pins needed)
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_example"
+  top_module:  "tt_um_vga_mouse"
 
   # List your project's source files here.
   # Source files must be in ./src and you must list each source file separately, one per line.
   # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
   source_files:
-    - "project.v"
+    - "tt_um_vga_mouse.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: "VCC"
-  ui[1]: "GND"
-  ui[2]: "1"
-  ui[3]: "2"
-  ui[4]: "3"
-  ui[5]: "4"
-  ui[6]: "5"
-  ui[7]: "6"
+  ui[0]: "Red Bit 0"      # VGA Red signal (LSB)
+  ui[1]: "Red Bit 1"      # VGA Red signal
+  ui[2]: "Red Bit 2"      # VGA Red signal (MSB)
+  ui[3]: "Green Bit 0"    # VGA Green signal (LSB)
+  ui[4]: "Green Bit 1"    # VGA Green signal
+  ui[5]: "Green Bit 2"    # VGA Green signal (MSB)
+  ui[6]: "Blue Bit 0"     # VGA Blue signal (LSB)
+  ui[7]: "Blue Bit 1"     # VGA Blue signal (MSB)
 
   # Outputs
-  uo[0]: "7"
-  uo[1]: "8"
-  uo[2]: "9"
-  uo[3]: "10"
-  uo[4]: "11"
-  uo[5]: "12"
-  uo[6]: "13"
-  uo[7]: "14"
+  uo[0]: "VGA Red 0"      # VGA Red output (LSB)
+  uo[1]: "VGA Red 1"      # VGA Red output
+  uo[2]: "VGA Red 2"      # VGA Red output (MSB)
+  uo[3]: "VGA Green 0"    # VGA Green output (LSB)
+  uo[4]: "VGA Green 1"    # VGA Green output
+  uo[5]: "VGA Green 2"    # VGA Green output (MSB)
+  uo[6]: "VGA Blue 0"     # VGA Blue output (LSB)
+  uo[7]: "VGA Blue 1"     # VGA Blue output (MSB)
 
   # Bidirectional pins
-  uio[0]: "15"
-  uio[1]: "16"
-  uio[2]: "17"
-  uio[3]: "18"
-  uio[4]: "19"
-  uio[5]: "20"
-  uio[6]: "21"
-  uio[7]: "22"
+  uio[0]: "PS/2 Clock"    # PS/2 Clock input
+  uio[1]: "PS/2 Data"     # PS/2 Data input
+  uio[2]: "VGA HSYNC"     # VGA Horizontal Sync output
+  uio[3]: "VGA VSYNC"     # VGA Vertical Sync output
+  uio[4]: ""              # Unused
+  uio[5]: ""              # Unused
+  uio[6]: ""              # Unused
+  uio[7]: ""              # Unused
 
 # Do not change!
 yaml_version: 6
